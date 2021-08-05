@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container-fluid{
+    display: grid;
+    grid-template-columns: 14vw 86vw ;
+    grid-template-rows: 80vh 12vh;
+    
+
+}
+.sidebar{
+    margin-left: 15px;
+}
+
+
+.ol-dragbox {
+    background-color: rgba(18, 15, 218, 0.4);
+    border-color: rgb(249, 250, 247);
+  }
+  
+

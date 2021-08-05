@@ -1,0 +1,201 @@
+
+<html>
+<head>   
+    <title>OpenMapProject</title>
+    <!--openLayers-->
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="http://openlayers.org/en/v6.5.0/css/ol.css" type="text/css">
+    <!-- bootsrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./popup.css">
+    <!--ShapeFileWriter -->
+    <script src="./myshpwrite.js"></script>
+</head>
+<body style="overflow-y: auto; overflow-x: auto;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" >OpenMapProject</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="">Map <span class="sr-only">(default)</span></a>
+            <a class="nav-item nav-link" href="downloads.html" >Downloads</a>
+            <a class="nav-item nav-link" href="about.html" >About/Help</a>
+          </div>
+        </div>
+      </nav>
+    <div class="grid-container-fluid">
+        <div class="grid-fluid" name="grid" style=" overflow-y: scroll;" >
+            <input type="checkbox" id="geoname" name="geoname" value="geoname">
+            <label for="geoname"> Geonames </label><br> 
+            <input type="checkbox" id="states" name="states" value="states">
+            <label for="states"> States</label><br>
+
+            <input type="checkbox" id="airp_feed" name="airp_feed" value="airp_feed">
+            <label for="airp_feed"> Airplanes Live Feed </label><br> 
+            <input type="checkbox" id="airp_ovr" name="airp_ovr" value="airp_ovr">
+            <label for="airp_ovr"> Airplanes Overall </label><br>
+
+
+            <input type="checkbox" id="mun" name="mun" value="mun">
+            <label for="mun"> Municipalities</label><br>
+            <input type="checkbox" id="apok" name="apok" value="apok">
+            <label for="apok"> Decentralised Govmnts.</label><br>
+            <input type="checkbox" id="airports" name="airports" value="airports">
+            <label for="airports"> Airports</label><br>
+            <input type="checkbox" id="eez_grc" name="eez_grc" value="eez_grc">
+            <label for="eez_grc"> EEZ</label><br>
+            <input type="checkbox" id="petrodatagrc" name="petrodatagrc" value="petrodatagrc">
+            <label for="petrodatagrc"> Petrodata</label><br>
+            <input type="checkbox" id="bathymetrics" name="bathymetrics" value="bathymetrics">
+            <label for="bathymetrics"> Bathymetrics</label><br>
+            <input type="checkbox" id="earth" name="earth" value="earth">
+            <label for="earth"> Earthquakes</label><br>
+            <input type="checkbox" id="bathymetrics_beam_gr" name="bathymetrics_beam_gr" value="bathymetrics_beam_gr">
+            <label for="bathymetrics_beam_gr"> Bathymetrics Beam</label><br>
+            <input type="checkbox" id="borders" name="borders" value="borders">
+            <label for="borders"> Borders</label><br>
+            <input type="checkbox" id="protected" name="protected" value="protected">
+            <label for="protected"> Marine Protected Areas</label><br>
+            <input type="checkbox" id="anchorages" name="anchorages" value="anchorages">
+            <label for="anchorages"> Anchorages</label><br>
+            <input type="checkbox" id="lakes" name="lakes" value="lakes">
+            <label for="lakes"> Lakes</label><br>
+            <input type="checkbox" id="volcanic" name="volcanic" value="volcanic">
+            <label for="volcanic"> Volcanic</label><br>
+            <input type="checkbox" id="discharge" name="discharge" value="discharge">
+            <label for="discharge"> Discharge points</label><br>
+            <input type="checkbox" id="ports" name="ports" value="ports">
+            <label for="ports"> Ports</label><br>
+            <input type="checkbox" id="marinas" name="marinas" value="marinas">
+            <label for="marinas" >Marinas</label><br>
+            <input type="checkbox" id="windfarms" name="windfarms" value="windfarms">
+            <label for="windfarms"> Planned Windfarms</label><br>
+            <input type="checkbox" id="shipwrecks" name="shipwrecks" value="shipwrecks">
+            <label for="shipwrecks"> Shipwrecks</label><br>
+            <input type="checkbox" id="lighthousesbtn" name="lighthousesbtn" value="lighthousesbtn">
+            <label for="lighthousesbtn"> Lighthouses</label><br>
+            <input type="checkbox" id="fishes" name="fishes" value="fishes">
+            <label for="fishes"> Fishes</label><br>
+            <input type="checkbox" id="shroutes" name="shroutes" value="shroutes">
+            <label for="shroutes"> Shipping Routes</label><br>
+            <input type="checkbox" id="summershroutes" name="summershroutes" value="summershroutes">
+            <label for="summershroutes"> Summer Shipping Routes</label><br>
+            <input type="checkbox" id="militarygrc" name="militarygrc" value="militarygrc">
+            <label for="militarygrc"> Military Areas</label><br>
+            <input type="checkbox" id="drengingygrc" name="drengingygrc" value="drengingygrc">
+            <label for="drengingygrc"> Drenging Points</label><br>
+            <input type="checkbox" id="telecom" name="telecom" value="telecom">
+            <label for="telecom"> Telecommunication cables</label><br>
+            <input type="checkbox" id="waterbasesgrc" name="waterbasesgrc" value="waterbasesgrc">
+            <label for="waterbasesgrc"> Waterbases </label><br>
+            <input type="checkbox" id="seagrassgrc" name="seagrassgrc" value="seagrassgrc">
+            <label for="seagrassgrc"> Seagrass </label><br>
+            <input type="checkbox" id="bathing_water" name="bathing_water" value="bathing_water">
+            <label for="bathing_water"> Bathing Water</label><br>
+            <input type="checkbox" id="boreholesgrc" name="boreholesgrc" value="boreholesgrc">
+            <label for="boreholesgrc"> Boreholes</label><br>
+            <input type="checkbox" id="spirulinagrc" name="spirulinagrc" value="spirulinagrc">
+            <label for="spirulinagrc"> Spirulina</label><br>
+            <input type="checkbox" id="coastlinegr" name="coastlinegr" value="coastlinegr">
+            <label for="coastlinegr"> Coastline</label><br>
+            <input type="checkbox" id="oil" name="oil" value="oil">
+            <label for="oil"> Oil Spills</label><br>
+            <input type="checkbox" id="minorisl" name="minorisl" value="minorisl">
+            <label for="minorisl"> Minor Islands</label><br>
+            <input type="checkbox" id="ocigr" name="ocigr" value="ocigr">
+            <label for="ocigr"> Ocean Health Index</label><br>
+            <input type="checkbox" id="cha" name="cha" value="cha">
+            <label for="cha"style="font-size: small;"> Cumulative Human Impact</label><br>
+            <input type="checkbox" id="mpa" name="mpa" value="mpa">
+            <label for="mpa" style="font-size: small;">Marine Protected Areas Change</label><br>
+            <input type="checkbox" id="salinity" name="salinity" value="salinity">
+            <label for="salinity">Salinity</label><br>
+            <input type="checkbox" id="curu0" name="curu0" value="curu0">
+            <label for="curu0">Current</label><br>
+            <input type="checkbox" id="theta" name="theta" value="theta">
+            <label for="theta">Theta Temperature</label><br>
+            <input type="checkbox" id="bottom" name="bottom" value="bottom">
+            <label for="bottom">Bottom Temperature</label><br>
+            <input type="checkbox" id="piracy" name="piracy" value="piracy">
+            <label for="piracy"> Piracy</label><br>
+            <input type="checkbox" id="ff" name="ff" value="ff">
+            <label for="ff"> Freshwater Fishes</label><br>
+            <input type="checkbox" id="eco" name="eco" value="eco">
+            <label for="eco"> Freshwater ecosystems</label><br>   
+            <input type="checkbox" id="bio" name="bio" value="bio">
+            <label for="bio"> Biodiversity</label><br>   
+            <input type="checkbox" id="arc" name="arc" value="arc">
+            <label for="arc"> Archeological Sites </label><br>   
+            
+            <input type="checkbox" id="mTemp" name="mTemp" value="mTemp">
+            <label for="mTemp"> Annual Mean Temperature </label><br> 
+            <input type="checkbox" id="mDiR" name="mDiR" value="mDiR">
+            <label for="mDiR"> Mean Diurnal Range  </label><br> 
+            <input type="checkbox" id="isoth" name="isoth" value="isoth">
+            <label for="isoth"> Isothermality  </label><br> 
+            <input type="checkbox" id="tSeas" name="tSeas" value="tSeas">
+            <label for="tSeas"> Temperature Seasonality </label><br> 
+            <input type="checkbox" id="maxtemp" name="maxtemp" value="maxtemp">
+            <label for="maxtemp"> Max Temperature of Warmest Month </label><br> 
+            <input type="checkbox" id="mintemp" name="mintemp" value="mintemp">
+            <label for="mintemp"> Min Temperature of Coldest Month </label><br> 
+            <input type="checkbox" id="tRange" name="tRange" value="tRange">
+            <label for="tRange"> Temperature Annual Range </label><br> 
+            <input type="checkbox" id="meanTWet" name="meanTWet" value="meanTWet">
+            <label for="meanTWet"> Mean Temperature of Wettest Quarter </label><br> 
+            <input type="checkbox" id="meanTDry" name="meanTDry" value="meanTDry">
+            <label for="meanTDry"> Mean Temperature of Driest Quarter </label><br> 
+            <input type="checkbox" id="meanTWarm" name="meanTWarm" value="meanTWarm">
+            <label for="meanTWarm"> Mean Temperature of Warmest Quarter </label><br> 
+            <input type="checkbox" id="meanTCold" name="meanTCold" value="meanTCold">
+            <label for="meanTCold"> Mean Temperature of Coldest Quarter </label><br> 
+            <input type="checkbox" id="prec" name="prec" value="prec">
+            <label for="prec">  Annual Precipitation </label><br> 
+            <input type="checkbox" id="precWet" name="precWet" value="precWet">
+            <label for="precWet"> Precipitation of Wettest Month </label><br> 
+            <input type="checkbox" id="precDry" name="precDry" value="precDry">
+            <label for="precDry"> Precipitation of Driest Month </label><br> 
+            <input type="checkbox" id="precSeas" name="precSeas" value="precSeas">
+            <label for="precSeas"> Precipitation Seasonality </label><br> 
+            <input type="checkbox" id="precWetQ" name="precWetQ" value="precWetQ">
+            <label for="precWetQ">  Precipitation of Wettest Quarter </label><br> 
+            <input type="checkbox" id="precDryQ" name="precDryQ" value="precDryQ">
+            <label for="precDryQ">  Precipitation of Driest Quarter </label><br> 
+            <input type="checkbox" id="precWarmQ" name="precWarmQ" value="precWarmQ">
+            <label for="precWarmQ"> Precipitation of Warmest Quarter </label><br> 
+            <input type="checkbox" id="precColdQ" name="precColdQ" value="precColdQ">
+            <label for="precColdQ"> Precipitation of Coldest Quarter </label><br> 
+        </div>
+        
+        <div class="grid" name="central">
+            <div id="map" class="map"></div>
+            <div id="popup" class="ol-popup">
+              <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+              <div id="popup-content"></div>
+            
+        </div>
+        
+        <div class='grid' name="info" id="info" style=" overflow-x: scroll;  overflow-y: scroll;">
+          &nbsp; 
+          
+        </div>    
+    </div>
+    
+
+    <div  name="box" id="box">
+      &nbsp;
+    </div>
+    
+    
+    <script src="main.js"></script>
+    <script src="layers.js"></script>
+    <script src="controlbox.js"></script>
+    <script src="switcher.js"></script>
+    <script src="eventlisteners.js"></script>
+</body>
+</html>
+
